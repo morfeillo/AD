@@ -47,11 +47,18 @@ namespace PHolaMysql
 
 			//Devuelve las columnas con el nombre de la las columnas.
 			for (int index=0; index < mySqlDataReader.FieldCount; index++) {
-				Console.WriteLine("colum {0} ={1}", index, mySqlDataReader.GetName(index)):
+				Console.WriteLine ("colum {0} ={1}", index, mySqlDataReader.GetName (index));
+			}
+			//si se el read esta ok, es true guarda los reader en un object(OBJETO DE MAXIMA ESCALA, CUALQUIER COSAS ES UN OBJECT)
+			// IMPRIME POR PANTALLA EL ID Y EL NOMBRE
+			while (mySqlDataReader.Read()) {
+				object id = mySqlDataReader ["id"];
+				object nombre = mySqlDataReader ["nombre"];
+				Console.WriteLine ("id={0} nombre={1}", id, nombre);
 			}
 
 
-			//Se cierra la conexión
+			//Se cierra la conexión SIEMPRE SE CIERRA LA CONEXION!!
 			mySqlConnection.Close ();
 		}
 	}
