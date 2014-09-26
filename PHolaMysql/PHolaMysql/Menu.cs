@@ -1,4 +1,5 @@
 using System;
+using MySql.Data.MySqlClient;
 
 namespace PHolaMysql
 {
@@ -21,15 +22,24 @@ namespace PHolaMysql
 				numero = int.Parse (opcion);
 
 			}
+
+			MySqlConnection mySqlConnection = new MySqlConnection(
+				"Server=localhost;Database=dbprueba;User ID=root;Password=sistemas;"); 
+
+			mySqlConnection.Open ();
+
+			MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
+
 			string registro;
 
 			switch (numero){
 			case 0:
-					Console.WriteLine ("Saliendo... ");
+					Console.WriteLine ("Gracias por utilizar el programa... Hasta pronto! ");
 					break;
 			case 1:
 					Console.WriteLine ("Introduzca el registro nuevo");
 					registro = Console.ReadLine ();
+
 					break;
 				case 2:
 					Console.WriteLine ("¿Que registro quiere modificar?");
@@ -45,13 +55,9 @@ namespace PHolaMysql
 					break;
 				default:
 					break;
-					
+					}
 
-
-
-			}
-
-
+			mySqlConnection.Close ();
 		}
 
 	}
