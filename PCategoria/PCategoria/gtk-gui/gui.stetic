@@ -28,6 +28,12 @@
         <property name="StockId">gtk-delete</property>
         <signal name="Activated" handler="OnDeleteActionActivated" />
       </action>
+      <action id="editAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-edit</property>
+        <signal name="Activated" handler="OnEditActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
@@ -45,6 +51,7 @@
               <node type="Toolitem" action="addAction" />
               <node type="Toolitem" action="refreshAction" />
               <node type="Toolitem" action="deleteAction" />
+              <node type="Toolitem" action="editAction" />
             </node>
           </widget>
           <packing>
@@ -75,6 +82,30 @@
           <placeholder />
         </child>
       </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="PCategoria.WindowEditar" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">windowEditar</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <placeholder />
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="PCategoria.windowEditar" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">windowEditar</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <placeholder />
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="PCategoria.VentanaEditar" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">VentanaEditar</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <placeholder />
     </child>
   </widget>
 </stetic-interface>

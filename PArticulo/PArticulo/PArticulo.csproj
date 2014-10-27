@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3795BAAB-F67D-4195-AAE7-F7A82EB2CAC5}</ProjectGuid>
+    <ProjectGuid>{C017561E-78D1-4C2B-A017-137037A9CC8C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PCategoria</RootNamespace>
-    <AssemblyName>PCategoria</AssemblyName>
+    <RootNamespace>PArticulo</RootNamespace>
+    <AssemblyName>PArticulo</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,11 +57,14 @@
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="PSerpisAd">
+      <HintPath>..\..\PSerpisAd\PSerpisAd\bin\Debug\PSerpisAd.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="MySql.Data, Version=6.4.3.0, Culture=neutral, PublicKeyToken=20449f9ba87f7ae2">
       <Private>False</Private>
       <Package>mysql-connector-net</Package>
     </Reference>
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -74,8 +77,10 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VentanaEditar.cs" />
-    <Compile Include="gtk-gui\PCategoria.VentanaEditar.cs" />
+    <Compile Include="CategoriaView.cs" />
+    <Compile Include="gtk-gui\PArticulo.CategoriaView.cs" />
+    <Compile Include="ArticuloView.cs" />
+    <Compile Include="gtk-gui\PArticulo.ArticuloView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
