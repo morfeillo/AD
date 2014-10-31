@@ -8,8 +8,10 @@ public partial class MainWindow
 	private global::Gtk.Action editAction;
 	private global::Gtk.Action deleteAction;
 	private global::Gtk.Action newAction2;
-	private global::Gtk.Action editAction1;
-	private global::Gtk.Action deleteAction1;
+	private global::Gtk.Action editActionArticulo;
+	private global::Gtk.Action deleteActionArticulo;
+	private global::Gtk.Action refreshAction;
+	private global::Gtk.Action refreshAction1;
 	private global::Gtk.VBox vbox2;
 	private global::Gtk.Notebook notebook2;
 	private global::Gtk.VBox vbox4;
@@ -30,26 +32,23 @@ public partial class MainWindow
 		this.UIManager = new global::Gtk.UIManager ();
 		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
 		this.newAction = new global::Gtk.Action ("newAction", null, null, "gtk-new");
-		this.newAction.ShortLabel = "";
 		w1.Add (this.newAction, null);
 		this.newAction1 = new global::Gtk.Action ("newAction1", null, null, "gtk-new");
-		this.newAction1.ShortLabel = "";
 		w1.Add (this.newAction1, null);
 		this.editAction = new global::Gtk.Action ("editAction", null, null, "gtk-edit");
-		this.editAction.ShortLabel = "";
 		w1.Add (this.editAction, null);
 		this.deleteAction = new global::Gtk.Action ("deleteAction", null, null, "gtk-delete");
-		this.deleteAction.ShortLabel = "";
 		w1.Add (this.deleteAction, null);
 		this.newAction2 = new global::Gtk.Action ("newAction2", null, null, "gtk-new");
-		this.newAction2.ShortLabel = "";
 		w1.Add (this.newAction2, null);
-		this.editAction1 = new global::Gtk.Action ("editAction1", null, null, "gtk-edit");
-		this.editAction1.ShortLabel = "";
-		w1.Add (this.editAction1, null);
-		this.deleteAction1 = new global::Gtk.Action ("deleteAction1", null, null, "gtk-delete");
-		this.deleteAction1.ShortLabel = "";
-		w1.Add (this.deleteAction1, null);
+		this.editActionArticulo = new global::Gtk.Action ("editActionArticulo", null, null, "gtk-edit");
+		w1.Add (this.editActionArticulo, null);
+		this.deleteActionArticulo = new global::Gtk.Action ("deleteActionArticulo", null, null, "gtk-delete");
+		w1.Add (this.deleteActionArticulo, null);
+		this.refreshAction = new global::Gtk.Action ("refreshAction", null, null, "gtk-refresh");
+		w1.Add (this.refreshAction, null);
+		this.refreshAction1 = new global::Gtk.Action ("refreshAction1", null, null, "gtk-refresh");
+		w1.Add (this.refreshAction1, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -69,7 +68,7 @@ public partial class MainWindow
 		this.vbox4.Name = "vbox4";
 		this.vbox4.Spacing = 6;
 		// Container child vbox4.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar3'><toolitem name='newAction2' action='newAction2'/><toolitem name='editAction1' action='editAction1'/><toolitem name='deleteAction1' action='deleteAction1'/></toolbar></ui>");
+		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar3'><toolitem name='newAction2' action='newAction2'/><toolitem name='editActionArticulo' action='editActionArticulo'/><toolitem name='deleteActionArticulo' action='deleteActionArticulo'/><toolitem name='refreshAction' action='refreshAction'/></toolbar></ui>");
 		this.toolbar3 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar3")));
 		this.toolbar3.Name = "toolbar3";
 		this.toolbar3.ShowArrow = false;
@@ -99,10 +98,9 @@ public partial class MainWindow
 		this.lblArticulo.ShowAll ();
 		// Container child notebook2.Gtk.Notebook+NotebookChild
 		this.vbox3 = new global::Gtk.VBox ();
-		this.vbox3.Name = "vbox3";
 		this.vbox3.Spacing = 6;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar2'><toolitem name='newAction1' action='newAction1'/><toolitem name='editAction' action='editAction'/><toolitem name='deleteAction' action='deleteAction'/></toolbar></ui>");
+		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar2'><toolitem name='newAction1' action='newAction1'/><toolitem name='editAction' action='editAction'/><toolitem name='deleteAction' action='deleteAction'/><toolitem name='refreshAction1' action='refreshAction1'/></toolbar></ui>");
 		this.toolbar2 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar2")));
 		this.toolbar2.Name = "toolbar2";
 		this.toolbar2.ShowArrow = false;
@@ -143,5 +141,12 @@ public partial class MainWindow
 		this.DefaultHeight = 433;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.newAction1.Activated += new global::System.EventHandler (this.OnNewAction1Activated);
+		this.editAction.Activated += new global::System.EventHandler (this.OnEditCategoriaActionActivated);
+		this.newAction2.Activated += new global::System.EventHandler (this.OnNewAction2Activated);
+		this.editActionArticulo.Activated += new global::System.EventHandler (this.OnEditArticuloActionActivated);
+		this.deleteActionArticulo.Activated += new global::System.EventHandler (this.OnDeleteArticuloActionActivated);
+		this.refreshAction.Activated += new global::System.EventHandler (this.OnRefreshActionActivated);
+		this.refreshAction1.Activated += new global::System.EventHandler (this.OnRefreshAction1Activated);
 	}
 }

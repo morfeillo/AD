@@ -13,44 +13,55 @@
       <action id="newAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-new</property>
       </action>
       <action id="newAction1">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-new</property>
+        <signal name="Activated" handler="OnNewAction1Activated" />
       </action>
       <action id="editAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-edit</property>
+        <signal name="Activated" handler="OnEditCategoriaActionActivated" />
       </action>
       <action id="deleteAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-delete</property>
+        <signal name="Activated" handler="OnDeleteActionActivated" />
       </action>
       <action id="newAction2">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-new</property>
+        <signal name="Activated" handler="OnNewAction2Activated" />
       </action>
-      <action id="editAction1">
+      <action id="editActionArticulo">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-edit</property>
+        <signal name="Activated" handler="OnEditArticuloActionActivated" />
       </action>
-      <action id="deleteAction1">
+      <action id="deleteActionArticulo">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-delete</property>
+        <signal name="Activated" handler="OnDeleteArticuloActionActivated" />
+      </action>
+      <action id="refreshAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-refresh</property>
+        <signal name="Activated" handler="OnRefreshActionActivated" />
+      </action>
+      <action id="refreshAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-refresh</property>
+        <signal name="Activated" handler="OnRefreshAction1Activated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -76,8 +87,9 @@
                     <property name="ShowArrow">False</property>
                     <node name="toolbar3" type="Toolbar">
                       <node type="Toolitem" action="newAction2" />
-                      <node type="Toolitem" action="editAction1" />
-                      <node type="Toolitem" action="deleteAction1" />
+                      <node type="Toolitem" action="editActionArticulo" />
+                      <node type="Toolitem" action="deleteActionArticulo" />
+                      <node type="Toolitem" action="refreshAction" />
                     </node>
                   </widget>
                   <packing>
@@ -130,6 +142,7 @@
                       <node type="Toolitem" action="newAction1" />
                       <node type="Toolitem" action="editAction" />
                       <node type="Toolitem" action="deleteAction" />
+                      <node type="Toolitem" action="refreshAction1" />
                     </node>
                   </widget>
                   <packing>
@@ -193,8 +206,8 @@
       <action id="saveAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
-        <property name="ShortLabel" translatable="yes" />
         <property name="StockId">gtk-save</property>
+        <signal name="Activated" handler="OnSaveActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -226,7 +239,7 @@
             <child>
               <widget class="Gtk.Label" id="Nombre">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">label6</property>
+                <property name="LabelProp" translatable="yes">Nombre: </property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -248,12 +261,329 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button1">
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder />
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="PArticulo.ArticuloView" design-size="400 300">
+    <action-group name="Default">
+      <action id="saveAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-save</property>
+        <signal name="Activated" handler="OnSaveActionActivated" />
+      </action>
+    </action-group>
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">ArticuloView</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <widget class="Gtk.VBox" id="vbox1">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.Toolbar" id="toolbar1">
+            <property name="MemberName" />
+            <property name="ShowArrow">False</property>
+            <node name="toolbar1" type="Toolbar">
+              <node type="Toolitem" action="saveAction" />
+            </node>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="lblArticulo">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Articulo: </property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Entry" id="entryArticulo">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">GtkButton</property>
-                <property name="UseUnderline">True</property>
+                <property name="IsEditable">True</property>
+                <property name="InvisibleChar">•</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VBox" id="vbox2">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.HBox" id="hbox2">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="lblPrecio">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Precio:</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="entryPrecio">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">•</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HBox" id="hbox3">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="lblCategoria">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Categoria:</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="entryCategoria">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">•</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="PArticulo.NuevoArticulo" design-size="400 300">
+    <action-group name="Default">
+      <action id="addAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-add</property>
+      </action>
+    </action-group>
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">NuevoArticulo</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <widget class="Gtk.VBox" id="vbox4">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.Toolbar" id="toolbar3">
+            <property name="MemberName" />
+            <property name="ShowArrow">False</property>
+            <node name="toolbar3" type="Toolbar">
+              <node type="Toolitem" action="addAction" />
+            </node>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VBox" id="vbox5">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.HBox" id="hbox4">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="lblArticulo">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Articulo: </property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="entryArticulo">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">•</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HBox" id="hbox5">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="lblPrecio">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Precio: </property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="entryPrecio">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">•</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HBox" id="hbox6">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="lblCategoria">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Categoria: </property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="entryCategoria">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">•</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder />
+                </child>
               </widget>
               <packing>
                 <property name="Position">2</property>
@@ -274,14 +604,6 @@
           <placeholder />
         </child>
       </widget>
-    </child>
-  </widget>
-  <widget class="Gtk.Window" id="PArticulo.ArticuloView" design-size="400 300">
-    <property name="MemberName" />
-    <property name="Title" translatable="yes">ArticuloView</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <child>
-      <placeholder />
     </child>
   </widget>
 </stetic-interface>

@@ -11,7 +11,6 @@ namespace PArticulo
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.Label Nombre;
 		private global::Gtk.Entry entryNombre;
-		private global::Gtk.Button button1;
 
 		protected virtual void Build ()
 		{
@@ -20,7 +19,6 @@ namespace PArticulo
 			this.UIManager = new global::Gtk.UIManager ();
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
 			this.saveAction = new global::Gtk.Action ("saveAction", null, null, "gtk-save");
-			this.saveAction.ShortLabel = "";
 			w1.Add (this.saveAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
@@ -48,7 +46,7 @@ namespace PArticulo
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.Nombre = new global::Gtk.Label ();
 			this.Nombre.Name = "Nombre";
-			this.Nombre.LabelProp = global::Mono.Unix.Catalog.GetString ("label6");
+			this.Nombre.LabelProp = global::Mono.Unix.Catalog.GetString ("Nombre: ");
 			this.hbox1.Add (this.Nombre);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.Nombre]));
 			w3.Position = 0;
@@ -63,22 +61,11 @@ namespace PArticulo
 			this.hbox1.Add (this.entryNombre);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.entryNombre]));
 			w4.Position = 1;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.button1 = new global::Gtk.Button ();
-			this.button1.CanFocus = true;
-			this.button1.Name = "button1";
-			this.button1.UseUnderline = true;
-			this.button1.Label = global::Mono.Unix.Catalog.GetString ("GtkButton");
-			this.hbox1.Add (this.button1);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.button1]));
-			w5.Position = 2;
+			this.vbox5.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox1]));
+			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;
-			this.vbox5.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox1]));
-			w6.Position = 1;
-			w6.Expand = false;
-			w6.Fill = false;
 			this.Add (this.vbox5);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -86,6 +73,7 @@ namespace PArticulo
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show ();
+			this.saveAction.Activated += new global::System.EventHandler (this.OnSaveActionActivated);
 		}
 	}
 }
