@@ -1,0 +1,21 @@
+import java.sql.SQLException;
+import java.util.Scanner;
+
+
+public class JArticulo {
+
+	private static Scanner scanner= new Scanner(System.in);
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	
+	
+	System.out.println("______________Menu______________ ");
+	System.out.println("|0.- Salir                      |");
+	System.out.println("|1.- Nuevo                      |");
+	System.out.println("|2.- Editar                     |");
+	System.out.println("|3.- Eliminar                   |");
+	System.out.println("|4.- Visualizar                 |");
+	System.out.println("|_______________________________| ");
+	
+	}
+}
