@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'mysql:mysql-connection-java:5.1.28'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.7.Final'
+    
+}
+
+
+

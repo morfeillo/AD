@@ -28,51 +28,94 @@ public class JArticulo {
 	System.out.println("Introduzca la opción a realizar");
 	int opcion = scanner.nextInt();
 	scanner.reset();
+	
+	String nombre;
+	int categoria;
+	float precio;
+	int id;
+	int resultSet;
+	
+	PreparedStatement preparedStatement;
+	
 	switch (opcion){
 		case 0: 
+			System.out.println("Finalizando..");
 			System.exit(0); 
 			break;
 		case 1: 
 			System.out.println("Introduzca el nuevo registro");
 			System.out.println("Nuevo Nombre: ");
-			String nombre= scanner.nextLine();
+			nombre= scanner.nextLine();
 			nombre=scanner.nextLine();
 			System.out.println("Nueva Categoria: ");
-			int categoria= scanner.nextInt();
+			categoria= scanner.nextInt();
 			System.out.println("Nuevo precio: ");
-			float precio = scanner.nextFloat();
+			precio = scanner.nextFloat();
 			
 			System.out.println("El nombre que has introducido es: "+nombre);
 			System.out.println("La categoria que has introducido es: "+categoria);
 			System.out.println("El precio que has introducido es: "+precio);
 		
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO articulo (nombre,categoria,precio) VALUES (?,?,?)");
+			preparedStatement = connection.prepareStatement("INSERT INTO articulo (nombre,categoria,precio) VALUES (?,?,?)");
 			
 			preparedStatement.setString(1, nombre);
 			preparedStatement.setInt(2, categoria);
 			preparedStatement.setFloat(3, precio);
-			int resultSet = preparedStatement.executeUpdate();
+			resultSet = preparedStatement.executeUpdate();
 			
 		//	resultSet.close();
 			preparedStatement.close();
 			connection.close();
-			break;
-		case 2: 
 			
 			break;
+		case 2: 
+			System.out.println("Introduzca el registro a editar (id)");
+			id=scanner.nextInt();
+			System.out.println("Nuevo Nombre: ");
+			nombre= scanner.nextLine();
+			nombre=scanner.nextLine();
+			System.out.println("Nueva Categoria: ");
+			categoria= scanner.nextInt();
+			System.out.println("Nuevo precio: ");
+			precio = scanner.nextFloat();
+			
+			preparedStatement = connection.prepareStatement(
+					 "UPDATE articulo SET nombre = ?, categoria = ?, precio = ? WHERE id = ? ");
+			
+			preparedStatement.setString(1, nombre);
+			preparedStatement.setInt(2, categoria);
+			preparedStatement.setFloat(3, precio);
+			preparedStatement.setInt(4, id);
+			resultSet = preparedStatement.executeUpdate();
+			preparedStatement.close();
+			connection.close();
+			break;
 		case 3: 
+			System.out.println("Introduzca el registro a eliminar (id)");
+			id=scanner.nextInt();
+			
+			preparedStatement = connection.prepareStatement(
+			"delete from articulo where id = ?");
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeUpdate();
+			System.out.println("El registro "+id+" ha sido eliminado");
+			preparedStatement.close();
+			connection.close();
 			
 			break;
 		case 4:
-			PreparedStatement preparedStatementVisualizar = connection.prepareStatement("select * from categoria where id = ?");
-			preparedStatementVisualizar.setLong(1, 7);
-			ResultSet resultSet4 = preparedStatementVisualizar.executeQuery();
+			System.out.println("Introduzca el numero de Id a visualizar");
+			id= scanner.nextInt();
+			
+			preparedStatement = connection.prepareStatement("select * from articulo where id = ?");
+			preparedStatement.setLong(1, id);
+			ResultSet resultSet4 = preparedStatement.executeQuery();
 			
 			while (resultSet4.next()) 
 				System.out.printf("id=%4s nombre=%s\n", 
 					resultSet4.getObject("id"), resultSet4.getObject("nombre"));
 			resultSet4.close();
-			preparedStatementVisualizar.close();
+			preparedStatement.close();
 			connection.close();
 			
 			break;
@@ -81,5 +124,6 @@ public class JArticulo {
 	
 	
 	connection.close();
+	System.exit(0); 
 	}
 }

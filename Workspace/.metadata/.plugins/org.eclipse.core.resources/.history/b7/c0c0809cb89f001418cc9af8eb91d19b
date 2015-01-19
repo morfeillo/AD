@@ -1,0 +1,28 @@
+package serpis.ad;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+public class HibernateCategoria {
+
+	public static void main(String[] args) {
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.jpa.mysql");
+		
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		List<Categoria> categorias = entityManager.createQuery("from Categoria", Categoria.class).getResultList();
+		for (Categoria categoria : categorias)
+			System.out.printf("Id= %ld Nombre =%s\n", categoria.getId(), categoria.getNombre());
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		entityManagerFactory.close();
+	}
+
+}
