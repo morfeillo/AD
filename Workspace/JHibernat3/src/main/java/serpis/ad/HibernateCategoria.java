@@ -3,6 +3,7 @@ package serpis.ad;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,9 +13,11 @@ import javax.persistence.TypedQuery;
 public class HibernateCategoria {
 
 	private static EntityManagerFactory entityManagerFactory;
+	private static Scanner scanner= new Scanner(System.in);
+	private static EntityManager entityManager;
 	
 	public static void main(String[] args) {
-		
+
 		entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.jpa.mysql");
 		
 		showCategorias();
@@ -22,6 +25,11 @@ public class HibernateCategoria {
 		persistNuevasCategorias();
 		
 		showCategorias();
+		System.out.println("Elimino Categorias");
+		deleteCategorias(19);
+		
+		System.out.println("Edito Categorias");
+		editCategorias(18,"pepito");
 		
 		entityManagerFactory.close();
 	}
@@ -51,4 +59,38 @@ public class HibernateCategoria {
 		entityManager.close();
 		
 	}
+	public static void deleteCategorias(long id){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		
+
+		//elimina
+    	//String deleteQuery="delete from Categoria where id=19";
+	//	entityManager.(deleteQuery).executeUpdate();
+		Categoria categoria = entityManager.find(Categoria.class, id);
+		entityManager.remove(categoria);
+		
+	
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		showCategorias();
+	}
+	public static void editCategorias(long id,String nombre){
+        entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Categoria categoria2 = entityManager.find(Categoria.class, id);
+		categoria2.setNombre(nombre);
+		
+		
+        
+		entityManager.getTransaction().commit();
+        entityManager.close();
+		
+        showCategorias();
+		
+	}
+	//añadir eliminar
+	//añadir edit
 }

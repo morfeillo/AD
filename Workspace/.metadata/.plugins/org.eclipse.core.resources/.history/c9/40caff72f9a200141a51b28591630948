@@ -1,0 +1,93 @@
+package serpis.ad;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+public class HibernateCategoria {
+
+	private static EntityManagerFactory entityManagerFactory;
+	private static Scanner scanner= new Scanner(System.in);
+	
+	public static void main(String[] args) {
+
+		entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.jpa.mysql");
+		
+		showCategorias();
+		System.out.println("Añado Categorias");
+		persistNuevasCategorias();
+		
+		showCategorias();
+		
+		entityManagerFactory.close();
+	}
+
+	public static void persistNuevasCategorias(){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Categoria categoria = new Categoria();
+		categoria.setNombre("Hibernate " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) );
+		entityManager.persist(categoria);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();	
+	}
+	
+	public static void showCategorias(){
+	
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		List<Categoria> categorias = entityManager.createQuery("from Categoria", Categoria.class).getResultList();
+		for (Categoria categoria : categorias)
+			System.out.printf("Id= %d Nombre =%s\n", categoria.getId(), categoria.getNombre());
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
+	}
+	public static void deleteCategorias(){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		showCategorias();
+		int id;
+		System.out.println("Introduzca el registro a eliminar (id)");
+		id=scanner.nextInt();
+		//elimina
+		entityManager.createQuery("delete from Categoria where i")
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
+	}
+	public static void editCategorias(){
+		int id;
+		String nombre;
+		int categoria;
+		float precio;
+
+		showCategorias();
+		System.out.println("Introduzca el registro a editar (id)");
+		id=scanner.nextInt();
+		System.out.println("Nuevo Nombre: ");
+		nombre= scanner.nextLine();
+		nombre=scanner.nextLine();
+		System.out.println("Nueva Categoria: ");
+		categoria= scanner.nextInt();
+		System.out.println("Nuevo precio: ");
+		precio = scanner.nextFloat();
+		
+		//edita
+		
+	}
+	//añadir eliminar
+	//añadir edit
+}

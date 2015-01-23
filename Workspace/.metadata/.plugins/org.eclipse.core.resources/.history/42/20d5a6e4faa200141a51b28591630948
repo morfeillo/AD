@@ -1,0 +1,96 @@
+package serpis.ad;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+public class HibernateCategoria {
+
+	private static EntityManagerFactory entityManagerFactory;
+	private static Scanner scanner= new Scanner(System.in);
+	private static EntityManager entityManager;
+	
+	public static void main(String[] args) {
+
+		entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.jpa.mysql");
+		
+		showCategorias();
+		System.out.println("Añado Categorias");
+		persistNuevasCategorias();
+		
+		showCategorias();
+		System.out.println("Elimino Categorias");
+		deleteCategorias(19);
+		
+		System.out.println("Edito Categorias");
+		editCategorias(18,"pepito");
+		
+		entityManagerFactory.close();
+	}
+
+	public static void persistNuevasCategorias(){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Categoria categoria = new Categoria();
+		categoria.setNombre("Hibernate " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) );
+		entityManager.persist(categoria);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();	
+	}
+	
+	public static void showCategorias(){
+	
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		List<Categoria> categorias = entityManager.createQuery("from Categoria", Categoria.class).getResultList();
+		for (Categoria categoria : categorias)
+			System.out.printf("Id= %d Nombre =%s\n", categoria.getId(), categoria.getNombre());
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
+	}
+	public static void deleteCategorias(int id){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		
+
+		//elimina
+    	//String deleteQuery="delete from Categoria where id=19";
+	//	entityManager.(deleteQuery).executeUpdate();
+		Categoria categoria = entityManager.find(Categoria.class, id);
+		entityManager.remove(categoria);
+		
+		showCategorias();
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
+	}
+	public static void editCategorias(int id,String nombre){
+        entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Categoria categoria2 = entityManager.find(Categoria.class, id);
+		categoria2.setNombre(nombre);
+		
+		showCategorias();
+        
+		entityManager.getTransaction().commit();
+        entityManager.close();
+		
+		
+		
+	}
+	//añadir eliminar
+	//añadir edit
+}
